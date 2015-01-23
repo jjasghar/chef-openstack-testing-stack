@@ -15,7 +15,7 @@ Support for CentOS 6.5 and Ubuntu 12 with Icehouse is available with the stable/
 - [ChefDK](https://downloads.chef.io/chef-dk/) 0.3.6 or later
 - [Vagrant](https://www.vagrantup.com/downloads.html) 1.7.2 or later with [VirtualBox](https://www.virtualbox.org/wiki/Downloads) or some other provider
 
-## Steps
+## Initial Setup Steps
 
 ```shell
 $ git clone https://github.com/jjasghar/chef-openstack-testing-stack.git testing-stack
@@ -35,11 +35,13 @@ files. I wrote this on my MacBook Pro with an `en0` you're mileage may vary.
 **NOTE**: If you are running Ubuntu 14.04 LTS and as your base compute machine, you should note that the shipped kernel `3.13.0-24-generic` has networking issues, and the best way to resolve this is via: `apt-get install linux-image-generic-lts-utopic`. This will install at least `3.16.0`
 from the Utopic hardware enablement.
 
-### Rake Commands
+## Rake Deploy Commands
+
+These commands will spin up various OpenStack cluster configurations, the simplest being the all-in-one controller with Nova networking.
 
 ```bash
-$ chef exec rake aio_neutron    # All-in-One Neutron Controller
 $ chef exec rake aio_nova       # All-in-One Nova-networking Controller
+$ chef exec rake aio_neutron    # All-in-One Neutron Controller
 $ chef exec rake multi_neutron  # Multi-Neutron Controller and 3 Compute nodes
 $ chef exec rake multi_nova     # Multi-Nova-networking Controller and 3 Compute nodes
 ```
@@ -83,11 +85,13 @@ If you would like to use the OpenStack dashboard you should go to https://localh
 
 ## Cleanup
 
+To cleanup all the nodes and start over again, using the following rake command.
+
 ```bash
 $chef exec rake clean          # blow everything away
 ```
 
-## Known Issues
+## Known Issues and Workarounds
 
 ### RabbitMQ
 
