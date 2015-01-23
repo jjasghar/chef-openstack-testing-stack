@@ -119,3 +119,9 @@ If you want to destroy everything, run this from the `testing-stack/` repo or us
 ```bash
 $ chef exec chef-client -z destroy_all.rb
 ```
+
+## Known Issues
+
+### RabbitMQ
+
+The rabbitmq cookbook has attribute `version` = 3.4.3 and `use_distro_version` = false.  The stackforge cookbooks override the 'use_distro_version' to true.  Since the version shipped with ubuntu 14 is 3.2.4-1, it fails trying to install reabbitmq-server.  This testing environment have been patched to change the 'use_distro_version' back to false.
