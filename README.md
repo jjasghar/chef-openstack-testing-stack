@@ -35,38 +35,15 @@ files. I wrote this on my MacBook Pro with an `en0` you're mileage may vary.
 **NOTE**: If you are running Ubuntu 14.04 LTS and as your base compute machine, you should note that the shipped kernel `3.13.0-24-generic` has networking issues, and the best way to resolve this is via: `apt-get install linux-image-generic-lts-utopic`. This will install at least `3.16.0`
 from the Utopic hardware enablement.
 
-You can use the command line or rake to spin up OpenStack.
+### Rake Commands
 
-### Rake 
-
-We have written some `rake` tasks to leverage ChefDK to help out with this also:
 ```bash
-rake aio_neutron    # All-in-One Neutron build
-rake aio_nova       # All-in-One Nova-networking build
-rake clean          # blow everything away
-rake multi_neutron  # Multi-Neutron build
-rake multi_nova     # Multi-Nova-networking build
+$ chef exec rake aio_neutron    # All-in-One Neutron Controller
+$ chef exec rake aio_nova       # All-in-One Nova-networking Controller
+$ chef exec rake multi_neutron  # Multi-Neutron Controller and 3 Compute nodes
+$ chef exec rake multi_nova     # Multi-Nova-networking Controller and 3 Compute nodes
 ```
 
-### Command Line
-
-Now you should be good to start up `chef-client`!
-This example will setup an all-in-one OpenStack controller with Nova networking.
-```bash
-$ chef exec chef-client -z vagrant_linux.rb aio-nova.rb
-```
-or this example will setup an all-in-one OpenStack controller with Neutron networking.
-```bash
-$ chef exec chef-client -z vagrant_linux.rb aio-neutron.rb # still not complete
-```
-If you want a multi-node cluster:
-```bash
-$ chef exec chef-client -z vagrant_linux.rb multi-nova.rb
-```
-or
-```bash
-$ chef exec chef-client -z vagrant_linux.rb multi-neutron.rb  # still not complete
-```
 If you spin up one of the multi-node builds, you'll have four machines `controller`,`compute1`,`compute2`, and `compute3`. They all live on the
 `192.168.100.x` network so keep that in mind. If you'd like to take this and change it around, whatever you decide your controller
 node to be change anything that has the `192.168.100.60` address to that.
@@ -106,10 +83,8 @@ If you would like to use the OpenStack dashboard you should go to https://localh
 
 ## Cleanup
 
-If you want to destroy everything, run this from the `testing-stack/` repo or use the Rake cleanup task.
-
 ```bash
-$ chef exec chef-client -z destroy_all.rb
+$chef exec rake clean          # blow everything away
 ```
 
 ## Known Issues
