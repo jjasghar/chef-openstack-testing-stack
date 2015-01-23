@@ -1,4 +1,4 @@
-# OpenStack-cluster with chef-provisioning
+# OpenStack cluster with chef-provisioning
 
 This is the testing framework for OpenStack and Chef. We leverage this to test against our changes to our [cookbooks](https://wiki.openstack.org/wiki/Chef/GettingStarted) to make sure
 that you can still build a cluster from the ground up with any changes we push up. This will eventually be tied into the gerrit workflow
