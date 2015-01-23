@@ -85,7 +85,7 @@ If you would like to use the OpenStack dashboard you should go to https://localh
 
 ## Cleanup
 
-To cleanup all the nodes and start over again, using the following rake command.
+To cleanup all the nodes and start over again with a different environment or different environment attribute overrides, using the following rake command.
 
 ```bash
 $chef exec rake clean          # blow everything away
@@ -96,3 +96,16 @@ $chef exec rake clean          # blow everything away
 ### RabbitMQ
 
 The rabbitmq cookbook has attribute `version` = 3.4.3 and `use_distro_version` = false.  The stackforge cookbooks override the 'use_distro_version' to true.  Since the version shipped with ubuntu 14 is 3.2.4-1, it fails trying to install reabbitmq-server.  This testing environment have been patched to change the 'use_distro_version' back to false.
+
+### Windows Platform
+
+When using this on a Windows platform, here are some tweaks to make this work.
+
+- After creating the .chef/validator.pem, you will need to convert the .pem file to linux EOL and ANSI character set.
+- In order to get ssh to work, you will need an ssl client installed.  I used the one that came with [Git for Windows](git-scm.com/download).  I needed to append the `C:\Program Files (x86)\Git\bin;` to the system PATH.
+ 
+## TODOs
+
+- Support for CentOS 7 with Juno
+- Easier debugging. Maybe a script to pull the logs from the controller.
+- More automated verification testing.  Tie into some amount of [tempest](https://github.com/openstack/tempest) or [refstack](https://wiki.openstack.org/wiki/RefStack)? for basic cluster testing
