@@ -6,22 +6,14 @@ and become a stackforge project.
 
 This framework also gives us an opportunity to show different Reference Architectures and a sane example on how to start with OpenStack and Chef.
 
-With the `master` branch of the cookbooks, which is currently tied to the base OpenStack Juno release, this supports deploying to an Ubuntu 14 platform.  Support for CentOS 7, RedHat 7 with Juno could happen at a later time.
+With the `master` branch of the cookbooks, which is currently tied to the base OpenStack Juno release, this supports deploying to an Ubuntu 14 platform.  Support for CentOS 7 with Juno could happen at a later time.
 
-Support for CentOS 6.5, RedHat 6.5, Ubuntu 12 with Icehouse is available with the stable/icehouse branch of this project.
+Support for CentOS 6.5 and Ubuntu 12 with Icehouse is available with the stable/icehouse branch of this project.
 
 ## Prereqs
 
 - [ChefDK](https://downloads.chef.io/chef-dk/) 0.3.6 or later
-- [Vagrant](https://www.vagrantup.com/downloads.html) 1.7.2 or later
-- [VirtualBox](https://www.virtualbox.org/wiki/Downloads) or something like that that vagrant can use
-
-#### VirtualBox
-TODO is this really needed? already handled by vagrant_linux.rb?
-```shell
-$ vagrant box add centos7 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-7.0_chef-provisionerless.box
-$ vagrant box add ubuntu14 http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04_chef-provisionerless.box
-```
+- [Vagrant](https://www.vagrantup.com/downloads.html) 1.7.2 or later with [VirtualBox](https://www.virtualbox.org/wiki/Downloads) or some other provider
 
 ## Steps
 
