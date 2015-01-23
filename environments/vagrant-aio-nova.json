@@ -8,6 +8,9 @@
     "default_attributes": {
     },
     "override_attributes": {
+        "rabbitmq": {
+            "use_distro_version": false
+        },
         "openstack": {
             "endpoints": {
                 "identity-bind": {

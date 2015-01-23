@@ -8,6 +8,9 @@
   "default_attributes": {
   },
   "override_attributes": {
+    "rabbitmq": {
+      "use_distro_version": false
+    },
     "mysql": {
       "allow_remote_root": true,
       "root_network_acl": ["%"]
