@@ -9,7 +9,7 @@
   },
     "override_attributes": {
         "rabbitmq": {
-            "version": "3.2.4-1"
+            "use_distro_version": false
         },
         "mysql": {
             "allow_remote_root": true,
