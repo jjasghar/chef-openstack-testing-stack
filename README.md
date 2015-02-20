@@ -45,16 +45,21 @@ $ chef exec rake aio_nova       # All-in-One Nova-networking Controller
 $ chef exec rake aio_neutron    # All-in-One Neutron Controller
 $ chef exec rake multi_neutron  # Multi-Neutron Controller and 3 Compute nodes
 $ chef exec rake multi_nova     # Multi-Nova-networking Controller and 3 Compute nodes
+$ chef exec rake swift_cluster  # Multi-node Swift cluster, 1 management node with 3 container nodes
 ```
 
-If you spin up one of the multi-node builds, you'll have four machines `controller`,`compute1`,`compute2`, and `compute3`. They all live on the
+If you spin up one of the compute multi-node builds, you'll have four machines `controller`,`compute1`,`compute2`, and `compute3`. They all live on the
 `192.168.100.x` network so keep that in mind. If you'd like to take this and change it around, whatever you decide your controller
+node to be change anything that has the `192.168.100.60` address to that.
+
+If you spin up the swift cluster you'll have four machines `management`, `container01`, `container02`, and `container03`. They all live on the
+`192.168.100.x` network so keep that in mind. If you'd like to take this and change it around, whatever you decide your management
 node to be change anything that has the `192.168.100.60` address to that.
 
 NOTE: We also have plans to split out the `multi-neutron-network-node` cluster also so the network node is it's own machine.
 This is also `still not complete`.
 
-### Access the Controller
+### Access the Controller (compute)
 
 ```bash
 $ cd vms
@@ -62,7 +67,15 @@ $ vagrant ssh controller
 $ sudo su -
 ```
 
-### Testing the Controller
+### Access the Management Node (swift)
+
+```bash
+$ cd vms
+$ vagrant ssh management
+$ sudo su -
+```
+
+### Testing the Controller (compute)
 
 ```bash
 # Access the controller as noted above
@@ -73,14 +86,14 @@ $ keystone user-list
 $ nova list
 ```
 
-#### Booting up an image on the Controller
+#### Booting up an image on the Controller (compute)
 
 ```bash
 # Access the controller as noted above
 $ nova boot test --image cirros --flavor 1
 ```
 
-#### Accessing the OpenStack Dashboard
+#### Accessing the OpenStack Dashboard (compute)
 
 If you would like to use the OpenStack dashboard you should go to https://localhost:9443 and the username and password is `admin/mypass`.
 
@@ -92,14 +105,14 @@ To remove all the nodes and start over again with a different environment or dif
 $ chef exec rake destroy_machines
 ```
 
-To refresh all the cookbooks, use the following rake commands.  
+To refresh all the cookbooks, use the following rake commands.
 
 ```bash
 $ chef exec rake destroy_cookbooks
 $ chef exec rake berks_vendor
 ```
 
-To cleanup everything, use the following rake command.  
+To cleanup everything, use the following rake command.
 
 ```bash
 $ chef exec rake clean
