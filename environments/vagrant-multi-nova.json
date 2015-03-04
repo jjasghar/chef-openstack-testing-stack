@@ -68,15 +68,21 @@
                 "network": {
                     "public_interface": "eth0",
                     "service_type": "nova",
-                    "multi_host": "true"
+                    "multi_host": "true",
+                    "floating": true,
+                    "auto_assign_floating_ip": true,
+                    "floating": {
+                        "ipv4_cidr": "172.16.100.0/24",
+                        "public_network_name": "public"
+                    }
                 },
                 "config": {
                     "ram_allocation_ratio": 5.0
                 },
                 "networks": [
                     {
-                        "label": "public",
-                        "ipv4_cidr": "172.16.100.0/24",
+                        "label": "internal",
+                        "ipv4_cidr": "10.0.0.0/24",
                         "num_networks": "1",
                         "network_size": "254",
                         "bridge": "br100",
